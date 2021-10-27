@@ -16,8 +16,15 @@ class Binary_Tree
     }
     void Insert(int);
     void Insert(int,node *);
-    void Display();
-    void Display(node *);
+    void Inorder();
+    void Inorder(node *);
+    void Preorder();
+    void Preorder(node *);
+    void Postorder();
+    void Postorder(node *);
+    
+    void Search(int);
+    void Search(node *,int);
 };
 void Binary_Tree::Insert(int No)
 {
@@ -74,19 +81,81 @@ void Binary_Tree::Insert(int No,node *temp)
     }
     
 }
-void Binary_Tree::Display()
+void Binary_Tree::Inorder()
 {
-    node* temp=head;
-    Display(temp);
+    Inorder(head);
 }
-void Binary_Tree::Display(node *temp)
+void Binary_Tree::Inorder(node *temp)
 {
      if(temp!=NULL)
      {
-         Display(temp->left);
+         Inorder(temp->left);
          cout<<temp->data<<"\t";
-         Display(temp->right);
+         Inorder(temp->right);
      }
+}
+void Binary_Tree::Preorder()
+{
+    Preorder(head);
+}
+void Binary_Tree::Preorder(node *temp)
+{
+     if(temp!=NULL)
+     {
+        
+        cout<<temp->data<<"\t";
+         Preorder(temp->left);
+         Preorder(temp->right);
+     }
+
+}
+void Binary_Tree::Postorder()
+{
+    Postorder(head);
+}
+void Binary_Tree::Postorder(node *temp)
+{
+     if(temp!=NULL)
+     {
+        
+         Postorder(temp->left);
+         Postorder(temp->right);
+         cout<<temp->data<<"\t";
+       
+     }
+
+}
+
+void Binary_Tree::Search(int No)
+{
+    if(head==NULL)
+    {
+        cout<<"\nThere is no element Found";
+        return;
+    }
+    if(head->data==No)
+    {
+        cout<<"\nElement Found";
+    }
+    else
+    {
+        Search(head,No);
+    }
+}
+void Binary_Tree::Search(node *head,int No)
+{
+    if(head->data==No)
+    {
+        cout<<"\nElement Found!";
+    }
+    else if(No<head->data)
+    {
+        Search(head->left,No);
+    }
+    else if(No>head->data)
+    {
+        Search(head->right,No);
+    }
 }
 int main()
 {
@@ -95,8 +164,11 @@ int main()
     int choice=0,No=0;
     do
     {
-        cout<<"1.Insert the Element in to Binary Tree";
-        cout<<"2.Display all elements in the list";
+        cout<<"\n1.Insert the Element in to Binary Tree";
+        cout<<"\n2.Display elements in Inoder list";
+        cout<<"\n3.Display elements in Preoder list";
+        cout<<"\n4.Display elements in postorder list";
+        cout<<"\n5.Search Specific Element";
         cout<<"\nEnter your choice:";
         cin>>choice;
 
@@ -107,8 +179,20 @@ int main()
             tobj.Insert(No);
             break;
 
-        case 2:tobj.Display();
+        case 2:tobj.Inorder();
             break;
+
+        case 3:tobj.Preorder();
+            break;
+
+        case 4:tobj.Postorder();
+            break;
+
+
+        case 5:cout<<"\n Enter the element to search:";
+               cin>>No;
+               tobj.Search(No);
+               break;
 
         default: cout<<"\nYou have Entered Invalid choice!!";
             break;
