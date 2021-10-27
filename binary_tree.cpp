@@ -91,11 +91,32 @@ void Binary_Tree::Display(node *temp)
 int main()
 {
     Binary_Tree tobj;
-    tobj.Insert(10);
-    tobj.Insert(8);
-    tobj.Insert(12);
-    tobj.Insert(9);
-    tobj.Insert(7);
-    tobj.Display();
+    char ans;
+    int choice=0,No=0;
+    do
+    {
+        cout<<"1.Insert the Element in to Binary Tree";
+        cout<<"2.Display all elements in the list";
+        cout<<"\nEnter your choice:";
+        cin>>choice;
+
+        switch (choice)
+        {
+        case 1:cout<<"\n Enter the element to insert into the tree:";
+            cin>>No;
+            tobj.Insert(No);
+            break;
+
+        case 2:tobj.Display();
+            break;
+
+        default: cout<<"\nYou have Entered Invalid choice!!";
+            break;
+        }
+        cout<<"\nDo you want to perform any other operation(y/n):";
+        cin>>ans;
+
+    }while(ans=='Y' || ans=='y');
+    
     return 0;
 }
